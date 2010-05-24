@@ -20,21 +20,21 @@
 
 
 class CMainDlg : public CDialogImpl< CMainDlg >, public CUpdateUI< CMainDlg >,
-		public CMessageFilter, public CIdleHandler, public CWinDataExchange< CMainDlg >
+      public CMessageFilter, public CIdleHandler, public CWinDataExchange< CMainDlg >
 {
 public:
 
-	enum { IDD = IDD_MAINDLG };
+   enum { IDD = IDD_MAINDLG };
 
-	virtual BOOL PreTranslateMessage( MSG* pMsg );
-	virtual BOOL OnIdle();
+   virtual BOOL PreTranslateMessage( MSG* pMsg );
+   virtual BOOL OnIdle();
 
-	BEGIN_UPDATE_UI_MAP( CMainDlg )
-	END_UPDATE_UI_MAP()
+   BEGIN_UPDATE_UI_MAP( CMainDlg )
+   END_UPDATE_UI_MAP()
 
-	BEGIN_MSG_MAP( CMainDlg )
-		MESSAGE_HANDLER( WM_INITDIALOG, OnInitDialog )
-		MESSAGE_HANDLER( WM_DESTROY, OnDestroy )
+   BEGIN_MSG_MAP( CMainDlg )
+      MESSAGE_HANDLER( WM_INITDIALOG, OnInitDialog )
+      MESSAGE_HANDLER( WM_DESTROY, OnDestroy )
       MESSAGE_HANDLER( WM_SYSCOMMAND, OnSysCommand )
       MESSAGE_HANDLER( RWM_LOCKKEYPRESSED, OnLockKeyPressed )
       MESSAGE_HANDLER( RWM_IDENTITY, OnIdentity )
@@ -48,7 +48,7 @@ public:
       COMMAND_ID_HANDLER( IDCANCEL, OnCancel )
       COMMAND_ID_HANDLER( ID__EXIT, OnCancel )
       COMMAND_ID_HANDLER( ID__PREFERENCES, OnPreferences )
-	END_MSG_MAP()
+   END_MSG_MAP()
 
    BEGIN_DDX_MAP( CMainDlg )
       DDX_CONTROL_HANDLE( IDC_NUMLOCK, c_numLock )
@@ -121,9 +121,9 @@ private:
 //	LRESULT CommandHandler( WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/ )
 //	LRESULT NotifyHandler( int /*idCtrl*/, LPNMHDR /*pnmh*/, BOOL& /*bHandled*/ )
 
-	LRESULT OnInitDialog( UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/ );
-	LRESULT OnDestroy( UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/ );
-	LRESULT OnSysCommand( UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/ );
+   LRESULT OnInitDialog( UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/ );
+   LRESULT OnDestroy( UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/ );
+   LRESULT OnSysCommand( UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/ );
    LRESULT OnLockKeyPressed( UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/ );
    LRESULT OnIdentity( UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/ );
    LRESULT OnActivate( UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/ );
@@ -136,7 +136,7 @@ private:
    LRESULT OnCancel( WORD /*wNotifyCode*/, WORD wID, HWND /*hWndCtl*/, BOOL& /*bHandled*/ );
    LRESULT OnPreferences( WORD /*wNotifyCode*/, WORD wID, HWND /*hWndCtl*/, BOOL& /*bHandled*/ );
 
-	void CloseDialog( int nVal );
+   void CloseDialog( int nVal );
 };
 
 

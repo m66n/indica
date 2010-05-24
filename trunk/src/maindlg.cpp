@@ -34,34 +34,34 @@ CMainDlg* CMainDlg::kludge_ = NULL;
 
 BOOL CMainDlg::PreTranslateMessage( MSG* pMsg )
 {
-	return CWindow::IsDialogMessage( pMsg );
+   return CWindow::IsDialogMessage( pMsg );
 }
 
 
 BOOL CMainDlg::OnIdle()
 {
-	return FALSE;
+   return FALSE;
 }
 
 
 LRESULT CMainDlg::OnInitDialog( UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/ )
 {
-	CenterWindow();
+   CenterWindow();
 
-	HICON hIcon = AtlLoadIconImage( IDR_MAINFRAME, LR_DEFAULTCOLOR,
+   HICON hIcon = AtlLoadIconImage( IDR_MAINFRAME, LR_DEFAULTCOLOR,
       ::GetSystemMetrics( SM_CXICON ), ::GetSystemMetrics( SM_CYICON ) );
-	SetIcon( hIcon, TRUE );
+   SetIcon( hIcon, TRUE );
 
-	HICON hIconSmall = AtlLoadIconImage( IDR_MAINFRAME, LR_DEFAULTCOLOR,
+   HICON hIconSmall = AtlLoadIconImage( IDR_MAINFRAME, LR_DEFAULTCOLOR,
       ::GetSystemMetrics( SM_CXSMICON ), ::GetSystemMetrics( SM_CYSMICON ) );
-	SetIcon( hIconSmall, FALSE );
+   SetIcon( hIconSmall, FALSE );
 
-	CMessageLoop* pLoop = _Module.GetMessageLoop();
-	ATLASSERT( NULL != pLoop );
-	pLoop->AddMessageFilter( this );
-	pLoop->AddIdleHandler( this );
+   CMessageLoop* pLoop = _Module.GetMessageLoop();
+   ATLASSERT( NULL != pLoop );
+   pLoop->AddMessageFilter( this );
+   pLoop->AddIdleHandler( this );
 
-	UIAddChildWindowContainer( m_hWnd );
+   UIAddChildWindowContainer( m_hWnd );
 
    kludge_ = this;
 
@@ -84,7 +84,7 @@ LRESULT CMainDlg::OnInitDialog( UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lPara
 
    ShowWindow( NoneSelected() ? SW_SHOWDEFAULT : SW_HIDE );
 
-	return TRUE;
+   return TRUE;
 }
 
 
@@ -92,19 +92,19 @@ LRESULT CMainDlg::OnDestroy( UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/
 {
    Unhook();
 
-	CMessageLoop* pLoop = _Module.GetMessageLoop();
-	ATLASSERT( NULL != pLoop );
-	pLoop->RemoveMessageFilter( this );
-	pLoop->RemoveIdleHandler( this );
+   CMessageLoop* pLoop = _Module.GetMessageLoop();
+   ATLASSERT( NULL != pLoop );
+   pLoop->RemoveMessageFilter( this );
+   pLoop->RemoveIdleHandler( this );
 
-	return 0;
+   return 0;
 }
 
 
 void CMainDlg::CloseDialog( int nVal )
 {
-	DestroyWindow();
-	::PostQuitMessage( nVal );
+   DestroyWindow();
+   ::PostQuitMessage( nVal );
 }
 
 
