@@ -578,9 +578,13 @@ LRESULT CMainDlg::OnTaskbarCreated( UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*l
 
 void CMainDlg::RestoreIndicators()
 {
-   config_.IsScrollLockActive() ? AddIndicator( VK_SCROLL ) : RemoveIndicator( VK_SCROLL );
-   config_.IsCapsLockActive() ? AddIndicator( VK_CAPITAL ) : RemoveIndicator( VK_CAPITAL );
-   config_.IsNumLockActive() ? AddIndicator( VK_NUMLOCK ) : RemoveIndicator( VK_NUMLOCK );
+   // Sometimes the tray icons are not visible at startup. Maybe a short delay will help.
+   //
+   SetTimer(TIMER_ID_RESTORE, TIMER_DELAY_RESTORE, DelayedTrayIconRestore);
+
+   //config_.IsScrollLockActive() ? AddIndicator( VK_SCROLL ) : RemoveIndicator( VK_SCROLL );
+   //config_.IsCapsLockActive() ? AddIndicator( VK_CAPITAL ) : RemoveIndicator( VK_CAPITAL );
+   //config_.IsNumLockActive() ? AddIndicator( VK_NUMLOCK ) : RemoveIndicator( VK_NUMLOCK );
 }
 
 
@@ -605,4 +609,15 @@ LRESULT CMainDlg::OnSysCommand( UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/,
    }
 
    return 0;
+}
+
+
+void CALLBACK CMainDlg::DelayedTrayIconRestore(HWND, UINT, UINT_PTR, DWORD)
+{
+   if ( kludge_ )
+   {
+      kludge_->config_.IsScrollLockActive() ? kludge_->AddIndicator( VK_SCROLL ) : kludge_->RemoveIndicator( VK_SCROLL );
+      kludge_->config_.IsCapsLockActive() ? kludge_->AddIndicator( VK_CAPITAL ) : kludge_->RemoveIndicator( VK_CAPITAL );
+      kludge_->config_.IsNumLockActive() ? kludge_->AddIndicator( VK_NUMLOCK ) : kludge_->RemoveIndicator( VK_NUMLOCK );
+   }
 }

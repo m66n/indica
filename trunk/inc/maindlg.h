@@ -61,7 +61,9 @@ public:
 
 private:
 
-   enum { TIMER_ID_CLICK = 1 };
+   enum { TIMER_ID_CLICK = 1,
+      TIMER_ID_RESTORE = 2,
+      TIMER_DELAY_RESTORE = 7000 };
 
    CButton c_numLock;
    CButton c_capsLock;
@@ -113,6 +115,7 @@ private:
 
    static CMainDlg* kludge_;
    static void CALLBACK DelayedSingleClick( HWND, UINT, UINT_PTR, DWORD );
+   static void CALLBACK DelayedTrayIconRestore(HWND, UINT, UINT_PTR, DWORD);
 
    void ToggleWindow();
 
